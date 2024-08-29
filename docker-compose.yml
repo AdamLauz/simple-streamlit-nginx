@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+
+  streamlit:
+    build: ./streamlit
+    container_name: streamlit
+    restart: always
+    expose:
+      - 8501
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    restart: always
+    ports:
+      - "80:1234"
+    depends_on:
+      - streamlit
